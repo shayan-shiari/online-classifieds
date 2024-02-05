@@ -1,12 +1,16 @@
 import { SendOtpForm } from "../../types/auth.type";
+import { sendOtp } from "../../services/auth";
 
 const SendOtpForm = ({ mobile, setMobile, setStep }: SendOtpForm) => {
-
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (mobile.length !== 11) return;
-    
+
+    const { response, error } = await sendOtp(mobile);
+
+    if (response) setStep(2);
+    if (error) console.log(error.response.date.message);
   };
 
   return (
