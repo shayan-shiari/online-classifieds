@@ -2,7 +2,7 @@
 const CheckOtpForm = () => {
     return (
         <div>
-            
+            CheckOtpForm
         </div>
     );
 };
