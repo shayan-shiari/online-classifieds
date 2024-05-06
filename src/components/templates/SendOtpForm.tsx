@@ -1,11 +1,15 @@
 import { SendOtpForm } from "../../types/auth.type";
 import { sendOtp } from "../../services/auth";
+import toast from "react-hot-toast/headless";
 
 const SendOtpForm = ({ mobile, setMobile, setStep }: SendOtpForm) => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (mobile.length !== 11) return;
+    if (mobile.length !== 11) {
+      toast.error("شماره موبایل باید 11 رقمی باشد");
+      return;
+    };
 
     const { response, error } = await sendOtp(mobile);
 
